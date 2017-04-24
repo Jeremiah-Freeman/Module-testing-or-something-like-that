@@ -1,0 +1,52 @@
+<?php
+
+function greeting_menu() {
+  $items = array();
+  $items['hello_friend'] = array(
+    'title' => 'Hey Bro',
+    'page callback' => 'say_hello',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+
+  $items['later'] = array(
+    'title' => 'later bro',
+    'page callback' => 'say_later',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+
+  );
+
+  $items['clear_cache'] = [
+    'title' => '$: drush cc all',
+    'page callback' => 'clear_cache',
+    'access callback' => TRUE,
+    'type' => MENU_NORMAL_ITEM,
+  ];
+  return $items;
+}
+
+function clear_cache(){
+  // shell_exec("drush cc all");
+  drupal_flush_all_caches();
+  // $_GET['destination'] = "";
+  return "<H1>All Caches Cleared</H1>";
+}
+
+function say_hello() {
+  return '<p>Hello my dear bro!</p>';
+}
+
+function say_later() {
+  return '<h3>Later Brosephine</h3>';
+}
+
+function greeting_user_login()
+{
+  $_GET['destination'] = 'hello_friend';
+}
+
+function greeting_user_logout ()
+{
+  $_GET['destination'] = 'later';
+}

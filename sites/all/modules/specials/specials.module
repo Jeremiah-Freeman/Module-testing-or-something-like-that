@@ -1,0 +1,24 @@
+<?php
+
+ function specials_menu()
+ {
+   $items = array();
+   $items['specials']= array(
+     'title' => "JayDyl's Daily SPecials",
+     'page callback' => 'specials_display',
+     'access callback' => TRUE,
+     'type' => MENU_NORMAL_ITEM,
+   );
+   return $items;
+ }
+
+function specials_display()
+{
+  return '
+    <ul>
+      <li>chai latte</li>
+      <li>kit kat</li>
+      <li>fat from kat</li>
+    </ul>
+  ';
+}
