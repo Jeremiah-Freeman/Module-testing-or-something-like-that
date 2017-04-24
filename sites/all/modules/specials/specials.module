@@ -3,6 +3,19 @@
  function specials_menu()
  {
    $items = array();
+   $friends = array("Tom", "Jill", "Arnold");
+
+   foreach($friends as $name){
+     $items['friend/'.$name] = array(
+       'title' => "JayDyl's best friend ".$name,
+       'page callback' => 'friend_display',
+       'page arguments' => array(1),
+       'access callback' => TRUE,
+       'type' => MENU_NORMAL_ITEM,
+     );
+
+   }
+
    $items['specials']= array(
      'title' => "JayDyl's Daily SPecials",
      'page callback' => 'specials_display',
@@ -12,13 +25,20 @@
    return $items;
  }
 
+ function friend_display($name){
+   return '<h1>Hi '.$name.'</h1>';
+ }
+
 function specials_display()
 {
   return '
-    <ul>
+    <ul id="my-list">
       <li>chai latte</li>
       <li>kit kat</li>
       <li>fat from kat</li>
     </ul>
+
+
+    <div class="dog"><img src="sites/all/modules/specials/dog.jpg"></div>
   ';
 }

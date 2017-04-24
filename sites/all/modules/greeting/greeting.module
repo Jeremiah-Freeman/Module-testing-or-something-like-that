@@ -20,17 +20,29 @@ function greeting_menu() {
   $items['clear_cache'] = [
     'title' => '$: drush cc all',
     'page callback' => 'clear_cache',
+    // 'page arguements' => array(1),
     'access callback' => TRUE,
     'type' => MENU_NORMAL_ITEM,
   ];
   return $items;
 }
+function greeting_init(){
+
+  $_SESSION['last_page']= $_GET['q'];
+  // var_dump($_SESSION['last_page']);
+  $last_path = $_SESSION['last_page'];
+  var_dump($_SESSION['last_page']);
+  var_dump(''.$last_path.'');
+}
 
 function clear_cache(){
   // shell_exec("drush cc all");
+  // $_GET['destination'] = 'hello_friend';
+  $last_path = $_SESSION['last_page'];
   drupal_flush_all_caches();
-  // $_GET['destination'] = "";
-  return "<H1>All Caches Cleared</H1>";
+  var_dump(''.$last_path.'');
+  // drupal_goto(''.$last_path.'');
+  return "<script>window.history.back();</script>";
 }
 
 function say_hello() {
@@ -38,6 +50,7 @@ function say_hello() {
 }
 
 function say_later() {
+
   return '<h3>Later Brosephine</h3>';
 }
 

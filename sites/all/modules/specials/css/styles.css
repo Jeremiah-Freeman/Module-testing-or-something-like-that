@@ -1,0 +1,10 @@
+#my-list {
+  border: 2px solid black;
+}
+
+
+.dog {
+  background-image: url('../dog.jpg');
+  min-width: 200px;
+  min-height: 200px;
+}
